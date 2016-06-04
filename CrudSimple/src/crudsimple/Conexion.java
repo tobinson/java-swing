@@ -1,0 +1,35 @@
+package crudsimple;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.*;
+
+/**
+ *
+ * @author toby
+ */
+public class Conexion {
+    //Configuracion de los datos de la BD
+    private String usuario = "root";
+    private String pass = "12345678";
+    private String host = "localhost";
+    private String nombre_BD = "crudsimple";
+    
+    private Connection con = null;
+    
+    public Conexion() {
+    }
+    //Metodo que se devuelve la conexion o null si hubo un error
+    public Connection getConexionMYSQL(){
+        try{
+            Class.forName("com.mysql.jdbc.Driver").newInstance( );
+            String servidor = "jdbc:mysql://"+host+"/"+nombre_BD;
+            con = DriverManager.getConnection(servidor,usuario,pass);
+            return con;
+        }catch(Exception e){
+            e.printStackTrace();
+            return con;
+        }
+        
+    }
+}
